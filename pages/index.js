@@ -23,7 +23,21 @@ export default function Home(){
   const reset=()=>{setStep(0);setAnswers([]);setFlags([]);setDone(false)}
   const iconC={low:{bg:'#EAF3DE',color:'#3B6D11'},high:{bg:'#FCEBEB',color:'#A32D2D'},med:{bg:'#FAEEDA',color:'#854F0B'}}
   const progress=Math.round((step/STEPS.length)*100)
-  return(<><Head><title>Creator Rights Framework — Aloha AI Consulting</title><meta name="description" content="Seven questions before any creator activation. Identifies governance gaps and returns a remediation checklist cross-referenced with live FTC enforcement and current AI legislation."/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta property="og:title" content="Creator Rights Framework"/><meta property="og:description" content="Identify AI governance gaps before any creator activation. Free, takes 2 minutes."/><meta property="og:type" content="website"/><meta property="og:url" content="https://aloha-creator-rights.vercel.app"/><meta name="twitter:card" content="summary"/><link rel="canonical" href="https://aloha-creator-rights.vercel.app"/><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Manrope:wght@400;500&family=DM+Mono&display=swap" rel="stylesheet"/></Head>
+  return(<><Head><title>Creator Rights Framework — Aloha AI Consulting</title><meta name="description" content="Seven questions before any creator activation. Identifies governance gaps and returns a remediation checklist cross-referenced with live FTC enforcement and current AI legislation."/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta property="og:title" content="Creator Rights Framework"/><meta property="og:description" content="Identify AI governance gaps before any creator activation. Free, takes 2 minutes."/><meta property="og:type" content="website"/><meta property="og:url" content="https://aloha-creator-rights.vercel.app"/><meta name="twitter:card" content="summary"/><link rel="canonical" href="https://aloha-creator-rights.vercel.app"/><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Manrope:wght@400;500&family=DM+Mono&display=swap" rel="stylesheet"/>      <link rel="sitemap" type="application/xml" href="/sitemap.xml"/>
+      <meta name="robots" content="index, follow"/>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+          {'@type':'Person','@id':'https://rn-portfolio-khaki.vercel.app/#rn-collins',
+           'name':'RN Collins','jobTitle':'AI Educator & Consultant',
+           'url':'https://rn-portfolio-khaki.vercel.app',
+           'sameAs':['https://linkedin.com/in/rn-collins']},
+          {'@type':'WebPage','name':'Aloha Creator Rights — RN Collins',
+           'url':'https://aloha-creator-rights.vercel.app',
+           'author':{'@id':'https://rn-portfolio-khaki.vercel.app/#rn-collins'}}
+        ]
+      })}} />
+</Head>
 
   <div style={{minHeight:'100vh',display:'flex',flexDirection:'column',background:BG}}>
     <header style={{background:G,padding:'0 40px'}}>

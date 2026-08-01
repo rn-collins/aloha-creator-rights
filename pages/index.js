@@ -74,7 +74,7 @@ export default function Home(){
     <InquiryModal source="creator-rights" />
     <footer style={{background:TX,padding:'24px clamp(20px,5vw,40px)',display:'flex',alignItems:'center',justifyContent:'space-between',gap:24,flexWrap:'wrap'}}>
       <div><div style={{fontFamily:'Syne',fontSize:13,fontWeight:600,color:'white'}}>RN Collins</div><div style={{fontSize:12,color:'rgba(255,255,255,.5)',marginTop:2}}>Neuroscientist · JD Candidate, Northeastern · AI Governance Researcher, Brown University AISLE Project</div></div>
-      <div style={{display:'flex',alignItems:'center',gap:20}}><a href="https://linkedin.com/in/rn-collins" target="_blank" rel="noopener noreferrer" style={{fontSize:13,color:'rgba(255,255,255,.6)'}}>LinkedIn</a><button onClick={()=>} style={{fontFamily:'Syne',fontSize:12,fontWeight:600,padding:'8px 18px',background:'rgba(255,255,255,.12)',border:'1px solid rgba(255,255,255,.25)',borderRadius:6,color:'white',cursor:'pointer'}}>Contact the Architect</button></div>
+      <div style={{display:'flex',alignItems:'center',gap:20}}><a href="https://linkedin.com/in/rn-collins" target="_blank" rel="noopener noreferrer" style={{fontSize:13,color:'rgba(255,255,255,.6)'}}>LinkedIn</a><button onClick={()=>setContactOpen(true)} style={{fontFamily:'Syne',fontSize:12,fontWeight:600,padding:'8px 18px',background:'rgba(255,255,255,.12)',border:'1px solid rgba(255,255,255,.25)',borderRadius:6,color:'white',cursor:'pointer'}}>Contact the Architect</button></div>
     </footer>
   </div></>)
 }

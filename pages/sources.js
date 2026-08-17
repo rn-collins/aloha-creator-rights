@@ -1,57 +1,43 @@
-import Head from 'next/head';
+import Head from 'next/head'
+import { AUTHORITIES, VERIFIED_AT, NEXT_REVIEW, authorityState } from '../lib/creatorAuthorities'
 
-const sources = [
-  {
-    topic: 'Endorsements and disclosures',
-    authority: 'Federal Trade Commission',
-    title: "FTC’s Endorsement Guides: What People Are Asking",
-    url: 'https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking',
-    scope: 'Official FTC staff guidance on endorsements, material connections, disclosures, platform tools, monitoring, and format-specific questions. Guidance is not a substitute for the FTC Act, rules, or matter-specific legal analysis.'
-  },
-  {
-    topic: 'Influencer disclosure basics',
-    authority: 'Federal Trade Commission',
-    title: 'Disclosures 101 for Social Media Influencers',
-    url: 'https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers',
-    scope: 'Official educational guidance addressing material connections and disclosure presentation in common social formats.'
-  },
-  {
-    topic: 'Digital replicas and federal policy',
-    authority: 'U.S. Copyright Office',
-    title: 'Copyright and Artificial Intelligence — Part 1: Digital Replicas',
-    url: 'https://www.copyright.gov/ai/Copyright-and-Artificial-Intelligence-Part-1-Digital-Replicas-Report.pdf',
-    scope: 'The Office’s policy report and recommendations. Recommendations and proposed legislation are not enacted federal law; state publicity, privacy, contract, labor, and other rules may also matter.'
-  },
-  {
-    topic: 'AI authorship and copyrightability',
-    authority: 'U.S. Copyright Office',
-    title: 'Copyright and Artificial Intelligence',
-    url: 'https://www.copyright.gov/ai/',
-    scope: 'Official hub for the Office’s multi-part AI reports and updates, including digital replicas and copyrightability.'
-  },
-  {
-    topic: 'EU AI transparency obligations',
-    authority: 'EUR-Lex',
-    title: 'Regulation (EU) 2024/1689 — consolidated version dated 27 July 2026',
-    url: 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02024R1689-20260727',
-    scope: 'Current consolidated documentation text reviewed for Article 50. Duties depend on the actor, system, content, use, audience, and effective date; they are not a universal label requirement for every use of AI content.'
-  }
-];
+const sources = Object.values(AUTHORITIES)
 
 export default function Sources(){
-  return <main style={{maxWidth:820,margin:'0 auto',padding:'64px 24px',fontFamily:'Manrope,system-ui',lineHeight:1.65,color:'#1C1B1F'}}>
-    <Head><title>Official sources | Creator Rights Issue Spotter</title><meta name="description" content="Official authority map and currency limits for the Creator Rights Issue Spotter."/><meta name="robots" content="index, follow"/><link rel="canonical" href="https://aloha-creator-rights.vercel.app/sources"/></Head>
+  return <main style={{maxWidth:880,margin:'0 auto',padding:'64px 24px',fontFamily:'Manrope,system-ui',lineHeight:1.65,color:'#1C1B1F'}}>
+    <Head><title>Authority register | Creator Rights Issue Spotter</title><meta name="description" content="Dated primary-authority register, jurisdiction limits, and currency states for the Creator Rights Issue Spotter."/><meta name="robots" content="index, follow"/><link rel="canonical" href="https://aloha-creator-rights.vercel.app/sources"/></Head>
     <a href="/" style={{color:'#1B7A68'}}>← Creator Rights Issue Spotter</a>
-    <p style={{fontSize:12,letterSpacing:'.1em',textTransform:'uppercase',color:'#5A5857',marginTop:40}}>Authority map · verified August 15, 2026</p>
-    <h1 style={{fontSize:36,lineHeight:1.15}}>Official sources and currency limits</h1>
-    <div style={{background:'#FFF3DE',border:'1px solid #E5CBA6',padding:'16px 18px',margin:'24px 0 34px'}}><strong>Legal-information boundary.</strong> These sources support educational issue spotting only. They do not make the questionnaire complete, current for every jurisdiction, or sufficient for a real matter. Platform policies and law change; verify the live rule and obtain qualified review before relying on any result.</div>
-    {sources.map(s=><section key={s.url} style={{borderTop:'1px solid #E2DDD6',padding:'24px 0'}}>
-      <div style={{fontSize:12,color:'#1B7A68',fontWeight:700,textTransform:'uppercase',letterSpacing:'.06em'}}>{s.topic}</div>
+    <p style={{fontSize:12,letterSpacing:'.1em',textTransform:'uppercase',color:'#5A5857',marginTop:40}}>Authority register · verified {VERIFIED_AT} · next review {NEXT_REVIEW}</p>
+    <h1 style={{fontSize:36,lineHeight:1.15}}>Official sources, status, and jurisdiction limits</h1>
+    <div style={{background:'#FFF3DE',border:'1px solid #E5CBA6',padding:'16px 18px',margin:'24px 0 18px'}}><strong>Legal-information boundary.</strong> This register supports educational issue spotting only. It is not a comprehensive legal survey, legal advice, rights clearance, or a substitute for reviewing the actual facts, documents, parties, territories, governing law, and current platform rules with qualified counsel.</div>
+    <div style={{background:'#F6F3EC',border:'1px solid #E2DDD6',padding:'14px 18px',marginBottom:34,fontSize:13,color:'#5A5857'}}>Automated currency rule: an authority becomes <strong>review due</strong> after {NEXT_REVIEW}. “Current” means only that the linked official source was checked on {VERIFIED_AT}; it does not guarantee no later amendment, decision, enforcement action, or jurisdiction-specific rule exists.</div>
+    {sources.map(s=>{const state=authorityState(s);return <section key={s.id} id={s.id} style={{borderTop:'1px solid #E2DDD6',padding:'26px 0'}}>
+      <div style={{display:'flex',justifyContent:'space-between',gap:14,alignItems:'flex-start',flexWrap:'wrap'}}>
+        <div style={{fontSize:12,color:'#1B7A68',fontWeight:700,textTransform:'uppercase',letterSpacing:'.06em'}}>{s.topic}</div>
+        <div style={{fontSize:11,padding:'3px 8px',borderRadius:4,background:state==='review-due'?'#FCEBEB':'#EAF3DE',color:state==='review-due'?'#A32D2D':'#3B6D11',fontWeight:700}}>{state}</div>
+      </div>
       <h2 style={{fontSize:21,margin:'7px 0'}}><a href={s.url} target="_blank" rel="noopener noreferrer" style={{color:'#1C1B1F'}}>{s.title} ↗</a></h2>
-      <div style={{fontSize:13,color:'#5A5857',marginBottom:8}}>Primary authority: {s.authority}</div>
-      <p style={{margin:0,color:'#5A5857'}}>{s.scope}</p>
-    </section>)}
-    <section style={{borderTop:'1px solid #E2DDD6',padding:'26px 0'}}><h2 style={{fontSize:21}}>What this page intentionally does not claim</h2><ul><li>It is not a fifty-state publicity-rights survey.</li><li>It does not determine whether proposed legislation has become law.</li><li>It does not preserve a snapshot of changing platform policies.</li><li>It does not evaluate a contract, license, collective-bargaining agreement, or specific activation.</li></ul></section>
+      <dl style={{display:'grid',gridTemplateColumns:'minmax(120px,170px) 1fr',gap:'6px 14px',fontSize:13,color:'#5A5857'}}>
+        <dt>Primary authority</dt><dd style={{margin:0}}>{s.authority}</dd>
+        <dt>Jurisdiction</dt><dd style={{margin:0}}>{s.jurisdiction}</dd>
+        <dt>Authority type</dt><dd style={{margin:0}}>{s.authorityType}</dd>
+        <dt>Published / version</dt><dd style={{margin:0}}>{s.published}</dd>
+        <dt>Verified</dt><dd style={{margin:0}}>{s.reviewed}</dd>
+        <dt>Next review</dt><dd style={{margin:0}}>{s.nextReview}</dd>
+      </dl>
+      <p style={{margin:'14px 0 0',color:'#5A5857'}}><strong>Scope limit:</strong> {s.scope}</p>
+    </section>})}
+    <section style={{borderTop:'1px solid #E2DDD6',padding:'28px 0'}}>
+      <h2 style={{fontSize:21}}>Known exclusions and mandatory escalation</h2>
+      <ul>
+        <li>No fifty-state publicity, privacy, digital-replica, or right-of-promotion survey.</li>
+        <li>No country-by-country analysis outside the limited EU AI Act reference.</li>
+        <li>No contract, collective-bargaining agreement, guild rule, license, or choice-of-law analysis.</li>
+        <li>No current policy register for TikTok, YouTube, Instagram, Twitch, X, music libraries, app stores, or advertising networks.</li>
+        <li>No trademark, defamation, consumer-product, sector-specific advertising, tax, employment, securities, or child-directed-content analysis.</li>
+      </ul>
+      <p><strong>Escalate before publication or payment</strong> when a project uses a person’s voice or likeness, lacks a documented license chain, targets multiple jurisdictions, includes regulated claims, involves a minor, depends on exclusivity or ownership, or cannot identify the current platform rule.</p>
+    </section>
     <p><a href="/privacy">Privacy</a> · <a href="/terms">Use and limitations</a></p>
   </main>
 }

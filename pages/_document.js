@@ -5,6 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="theme-color" content="#1B7A68" />
         <script defer src="/_vercel/insights/script.js" />
         <script defer src="/_vercel/speed-insights/script.js" />
